@@ -53,10 +53,16 @@ const ThoughtSchema = new Schema(
   {
     toJSON: {
       getters: true,
+      virtuals: true
     },
     id: false,
   }
 );
+
+ThoughtSchema.virtual('reactionCount').get(function() {
+    // return this.reactions.reduce((total, reaction) => total + comment.replies.length + 1, 0);
+    return this.reactions.length;
+  });
 
 const Thought = model('Thought', ThoughtSchema);
 
