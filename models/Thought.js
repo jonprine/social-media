@@ -1,6 +1,35 @@
 const { Schema, model, Types } = require("mongoose");
 const moment = require("moment");
 
+const ReactionSchema = new Schema(
+    {
+      // set custom id to avoid confusion with parent comment's _id field
+      reactionId: {
+        type: Schema.Types.ObjectId,
+        default: () => new Types.ObjectId()
+      },
+      reactionBody: {
+        type: String,
+        required: true,
+        maxlength: [280, 'Reaction cannot be more than 280 characters']
+      },
+        username: {
+        type: String,
+        required: true
+      },
+      createdAt: {
+        type: Date,
+        default: Date.now,
+        get: createdAtVal => moment(createdAtVal).format('MMM DD, YYYY [at] hh:mm a')
+      }
+    },
+    {
+      toJSON: {
+        getters: true
+      }
+    }
+  );
+
 const ThoughtSchema = new Schema(
   {
     thoughtText: {
@@ -19,7 +48,7 @@ const ThoughtSchema = new Schema(
       type: String,
       required: true,
     },
-    // reactions: [ReactionSchema],
+    reactions: [ReactionSchema],
   },
   {
     toJSON: {
