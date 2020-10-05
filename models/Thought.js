@@ -35,8 +35,8 @@ const ThoughtSchema = new Schema(
     thoughtText: {
       type: String,
       required: true,
-      minlength: [1, 'Thoughts need to be between 1 and 250 characters'],
-      maxlength: [280, 'Thoughts need to be between 1 and 250 characters']
+      minlength: [1, 'Thoughts need to be between 1 and 280 characters'],
+      maxlength: [280, 'Thoughts need to be between 1 and 280 characters']
     },
     createdAt: {
       type: Date,
