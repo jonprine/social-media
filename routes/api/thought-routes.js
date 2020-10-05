@@ -30,6 +30,6 @@ router.route('/:userId/:thoughtId').delete(removeThought);
 router.route('/:thoughtId/reactions').post(addReaction);
 
 //remove reaction
-router.route('/:thoughtId/reactions').delete(removeReaction);
+router.route('/:thoughtId/reactions/:reactionId').delete(removeReaction);
 
 module.exports = router;
